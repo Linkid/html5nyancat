@@ -5,7 +5,7 @@
 		html, body, #catoutwrap, #coveroutwrap, #rboutwrap { width: 100%; height: 100%; }
 		body { padding: 0; margin: 0; background-color: black /*#036*/; font-size: 8pt; }
 		noscript { font-size: 16pt; margin-top: 5em; text-align: center; color: white }
-		#cat, #cover, #rainbow { display: none }
+		#cat, #cover, #rainbow #rainbow2 { display: none }
 		#catoutwrap { position: absolute; top: 0; left: 0; display: table; z-index: 10 }
 		#catinwrap { width: 100%; display: table-cell; vertical-align: middle; }
 		#cat { width: 34em; height: 21em; margin: 0 auto; }
@@ -18,19 +18,29 @@
 		#cover2 { height: 3em; width: 25em; position: absolute; top: 0em; left: 9em; }
 		#rboutwrap { position: absolute; top: 0; left: 0; display: table; z-index: 0 }
 		#rbinwrap { width: 50%; display: table-cell; vertical-align: middle  }
-		#rainbow { z-index: 0; width: 50%; height: 21em; position: relative }
+		#rainbow { z-index: 0; width: 50%; height: 13em; position: relative }
+		#rainbow2 { z-index: 0; width: 50%; height: 13em; position: relative }
 		.rb { height: 18em; padding: 1em 0 2em; width: 8em; position: absolute }
+		.rb2 { height: 18em; padding: 1em 0 2em; width: 8em; position: absolute }
 		#rb01 { right: 0 }
 		#rb02 { right: 8em }
 		#rb03 { right: 16em }
 		.rb.alt { padding: 2em 0 1em }
-		.rb > div { height: 3em; width: 100%; }
+		.rb2.alt { padding: 2em 0 1em }
+		.rb > div { height: 2em; width: 100%; }
+		.rb2 > div { height: 2em; width: 100%; }
 		.red { background-color: #f00; }
 		.ora { background-color: #f90; }
 		.yel { background-color: #ff0; }
 		.gre { background-color: #3f0; }
 		.blu { background-color: #09f; }
 		.pur { background-color: #63f; }
+		.redp { background-color: #f00; }
+		.orap { background-color: #ff8000; }
+		.yelp { background-color: #ff0; }
+		.grep { background-color: #007940; }
+		.blup { background-color: #4040ff; }
+		.purp { background-color: #a000c0; }
 	</style>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
@@ -70,6 +80,16 @@
 					<div class="pur"></div>
 				</div>
 			</div>
+			<div id="rainbow2">
+				<div class="rb2">
+					<div class="redp"></div>
+					<div class="orap"></div>
+					<div class="yelp"></div>
+					<div class="grep"></div>
+					<div class="blup"></div>
+					<div class="purp"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -96,16 +116,20 @@
 	function rotateRainbow()
 	{
 		rainbows = $('.rb');
+		rainbows2 = $('.rb2');
 		for (var i = 0; i < rainbows.length; i++)
 		{
 			rainbow = rainbows.eq(i);
+			rainbow2 = rainbows2.eq(i);
 			if (rainbow.hasClass('alt'))
 			{
 				rainbow.removeClass('alt');
+				rainbow2.removeClass('alt');
 			}
 			else
 			{
 				rainbow.addClass('alt');
+				rainbow2.addClass('alt');
 			}
 		}
 	}
@@ -116,6 +140,7 @@
 		$('#cat').show();
 		$('#cover').show();
 		$('#rainbow').show();
+		$('#rainbow2').show();
 
 		nyan = $('#cat>object');
 		nyan.hide();
@@ -124,17 +149,22 @@
 		for (var i = 1; i < 20; i++)
 		{
 			$('.rb').eq(0).clone().appendTo('#rainbow');
+			$('.rb2').eq(0).clone().appendTo('#rainbow2');
 		}
 
 		rainbows = $('.rb');
+		rainbows2 = $('.rb2');
 		for (var i = 0; i < rainbows.length; i++)
 		{
 			rainbow = rainbows.eq(i);
 			rainbow.css('right', i * 8 + 'em');
+			rainbow2 = rainbows2.eq(i);
+			rainbow2.css('right', i * 8 + 'em');
 
 			if (i % 2 == 1)
 			{
 				rainbow.addClass('alt');
+				rainbow2.addClass('alt');
 			}
 		}
 
